@@ -15,8 +15,10 @@ def controlls():
 
 def playbox(screenrows: list):
 	"""Print the play area in the terminal"""
+	print("[]"*(width+2))
 	for i in screenrows:
-		print("".join(i))
+		print("[]" + "".join(i) + "[]")
+	print("[]"*(width+2))
 
 def make_gamebox():
 	"""Creates the play area for the game in the form of a two dimensional list"""
@@ -82,7 +84,7 @@ while True:
 			gamebox[i[1]][i[0]] = character_body
 	playbox(gamebox)
 	print(f"Score: {body_len-5}")
-	sleep(1.7)
+	sleep(1.4)
 	match controlls():
 		case "d":
 			if pos_x < width-1:
