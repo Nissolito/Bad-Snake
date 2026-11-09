@@ -1,2 +1,3 @@
 use WASD to controll the snake any other input will KILL you
 ----------------------Start--------------------------
+d

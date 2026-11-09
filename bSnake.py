@@ -22,29 +22,21 @@ def playbox(screenrows: list):
 
 def make_gamebox():
 	"""Creates the play area for the game in the form of a two dimensional list"""
-	return [
-		["::","::","::","::","::","::","::","::","::","::","::","::"],
-		["::","::","::","::","::","::","::","::","::","::","::","::"],
-		["::","::","::","::","::","::","::","::","::","::","::","::"],
-		["::","::","::","::","::","::","::","::","::","::","::","::"],
-		["::","::","::","::","::","::","::","::","::","::","::","::"],
-		["::","::","::","::","::","::","::","::","::","::","::","::"],
-		["::","::","::","::","::","::","::","::","::","::","::","::"],
-		["::","::","::","::","::","::","::","::","::","::","::","::"],
-		["::","::","::","::","::","::","::","::","::","::","::","::"],
-		["::","::","::","::","::","::","::","::","::","::","::","::"],
-		["::","::","::","::","::","::","::","::","::","::","::","::"],
-		["::","::","::","::","::","::","::","::","::","::","::","::"],
-	]
+	gamebox = []
+	for i in range(height):
+		gamebox.append([])
+		for j in range(width):
+			gamebox[i].append("..")
+	return gamebox
 
+height = 12
+width = 12
 gamebox = make_gamebox()
-height = len(gamebox)
-width = len(gamebox[0])
 print(f"{height} x {width}")
 
 
-fruit_pos_y, fruit_pos_x = 5, 9
-pos_y, pos_x = 0, 0
+fruit_pos_y, fruit_pos_x = height//2 -1,  width - (width//4)
+pos_y, pos_x = 5, 2
 
 fruit_head = f"{RED}\U0001FBE9\U0001FBEB{RESET}"
 character_body = f"{GREEN}\U0001FBE9\U0001FBEB{RESET}"
@@ -54,16 +46,17 @@ dir = 0
 body_pos = []
 body_len = 5
 while True:
+	print()
 	gamebox = make_gamebox()
 	print("\n"*10)
-	if (pos_x,pos_y) in body_pos:
+	if (pos_x, pos_y) in body_pos:
 		break
-	if (pos_y,pos_x) == (fruit_pos_y,fruit_pos_x):
+	if (pos_y, pos_x) == (fruit_pos_y, fruit_pos_x):
 			body_len += 1
 			while True:
 				try:
-					fruit_pos_y = randint(0,11)
-					fruit_pos_x = randint(0,11)
+					fruit_pos_y = randint(0, height-1)
+					fruit_pos_x = randint(0, width-1)
 					for i in body_pos:
 						if (fruit_pos_y,fruit_pos_x) == i:
 							print(i)
